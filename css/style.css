@@ -1,0 +1,152 @@
+/* creating a keyframe that can then be referenced for animating the logo */
+@keyframes logo_animation {
+  from {
+    width: 25px;
+    opacity: 0;
+  }
+  to {
+    width: 475px;
+    opacity: 1;
+  }
+}
+
+/* using logo ID to animate the logo */
+#logo {
+  animation: logo_animation 5s;
+}
+
+body {
+  font-family: "Poppins", serif;
+  background-image: url("../images/concrete_seamless.png");
+  /* by default the background image will be used. If it is not available, the background color will be used. */
+  background-color: #f1f1f1;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  /* the header should be a flex container with a column direction */
+  align-items: center;
+  /* the header will be in the center of the page */
+}
+
+.nav_links {
+  display: flex;
+  flex-direction: column;
+}
+
+/* for making visited links the same as unvisited links  */
+a:visited,
+a {
+  color: blue;
+}
+
+.card > header {
+  background-color: #288088;
+  border: 2px solid #45adad;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+.card {
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  flex-basis: 450px;
+}
+
+.pricing {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery img {
+  border: solid 10px #50c7c7;
+  margin: 10px;
+  width: 300px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* for screens greater than 900px */
+@media screen and (min-width: 901px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .nav_links {
+    flex-direction: row;
+  }
+
+  .card {
+    flex-basis: 275px;
+  }
+}
+
+body > header {
+  position: sticky;
+  width: 100%;
+  top: 0;
+}
+
+/* turning off logo animation for users who prefer reduced motion */
+@media screen and (prefers-reduced-motion: reduce) {
+  #logo {
+    animation: none;
+  }
+}
+
+/* for print view in portrait mode */
+@media print and (orientation: portrait) {
+  body {
+    font-family: Arial, Helvetica;
+    background-image: none;
+  }
+
+  .nav_links {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .pricing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+  }
+
+  .card {
+    border: solid 2px #45addd;
+    flex-basis: 325px;
+  }
+
+  #gallery,
+  .gallery {
+    display: none;
+  }
+
+  main {
+    page-break-after: always;
+  }
+
+  /* selecting the child ul element of the card class and then using it to access the second of the li element descendants*/
+  /* "after" will place the thumbs up emoji right after the content of the second li element  */
+  .card > ul li:nth-child(2)::after {
+    content: "\1F44D";
+    /* \1F44D is the unicode for the thumbs up emoji */
+  }
+}
